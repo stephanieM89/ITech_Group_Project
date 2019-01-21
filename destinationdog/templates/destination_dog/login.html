@@ -1,0 +1,26 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Login</span>
+{% endblock %}
+
+{% block body_block %}
+    <form id="login_form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="col-25">
+                Username:
+        </div>
+        <div class="col-75">
+                <input type="text" name="username" value="" size="50"/>
+        </div>
+        <div class="col-25">
+                Password:
+        </div>
+        <div class="col-75">
+                <input type="password" name="password" value="" size="50"/>
+        </div>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}

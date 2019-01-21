@@ -1,0 +1,25 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">{{ article.title }}</span>
+{% endblock %}
+
+{% block body_block %}
+    {% if article %}
+        {% if article.image %}
+            <img class="article-image" src="{{ MEDIA_URL }}{{ article.image }}"/><br><br>
+        {% endif %}
+        <div class="written_by"> Written by
+            <a class="author-link"
+               href="{% url 'user_profile' article.author.user.username %}">{{ article.author.user.first_name }}
+                {{ article.author.user.last_name }}</a>
+            | ({{ article.date }})
+        </div>
+        <div class="article-content">
+            <p>{{ article.article | linebreaks }}</p>
+        </div>
+    {% else %}
+        Article does not exist
+    {% endif %}
+{% endblock %}

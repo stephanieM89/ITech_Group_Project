@@ -1,0 +1,23 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Enter</span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="form">
+        <form method="post" action="{% url 'dotm_enter' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="col-25">
+                    {{ field.help_text }}
+                </div>
+                <div class="col-75">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <input type="submit" name="submit" value="Enter"/>
+        </form>
+    </div>
+{% endblock %}

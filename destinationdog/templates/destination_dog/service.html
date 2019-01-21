@@ -1,0 +1,70 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+    
+
+    
+
+{% block header_block %}
+    <span class="title">{{ service.name }}</span>
+{% endblock %}
+
+{% block body_block %}
+    {% if service %}
+        <strong>Service: <i>{{ service.serType }}</i></strong><br>
+        <strong>Location: <i id="address">{{ service.location }}</i></strong><br>
+        <strong>Monday Times: </strong><i>{{service.mondayTimes}}</i></strong><br>
+        <strong>Tuesday Times: </strong><i>{{service.tuesdayTimes}}</i></strong><br>
+        <strong>Wednesday Times: </strong><i>{{service.wednesdayTimes}}</i></strong><br>
+        <strong>Thursday Times: </strong><i>{{service.thursdayTimes}}</i></strong><br>
+        <strong>Friday Times: </strong><i>{{service.fridayTimes}}</i></strong><br>
+        <strong>Saturday Times: </strong><i>{{service.saturdayTimes}}</i></strong><br>
+        <strong>Sunday Times: </strong><i>{{service.sundayTimes}}</i></strong><br>
+        <strong>Contact: <i>{{ service.contact }}</i></strong><br>
+        <strong>Email: <i>{{ service.email }}</i></strong><br>
+        <strong>Description: <i>{{ service.description }}</i></strong><br>
+        <strong>Ratings: <i>{{ service.ratings }}</i></strong><br>
+        <div>
+            <div id="map" style="width:100%;height:600px;background:yellow"></div>
+        </div>
+        
+    {% else %}
+        Service does not exist
+    {% endif %}
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvtmptS9tWIr1UyhUenzyDJajNdj3QHnw&libraries=places&callback=initMap"
+        async defer>
+    </script>
+
+    <script>
+            function initMap() {
+                var address = document.getElementById('address').innerHTML;
+    
+                if (address == '') {
+                    document.getElementById("map").style.display = "none"
+                    document.getElementById("address").innerHTML = "No location provided";
+                }
+                else {
+                    var geocoder = new google.maps.Geocoder();
+    
+                    geocoder.geocode({'address': address}, function (results, status) {
+                        if (status === 'OK') {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 15,
+                                center: results[0].geometry.location
+                            });
+    
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                        }
+                        else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                }
+            }
+        </script>
+{% endblock %}

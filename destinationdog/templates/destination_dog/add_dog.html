@@ -1,0 +1,31 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Add Dog</span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="form">
+    <form method="post" id="add_dog_form" action="{% url 'user_profile' user.username %}add_dog/"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>This is the page to add a dog</p>
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+        <div class="col-25">
+            {{ field.help_text }}
+        </div>
+        <div class="col-75">
+            {{ field }}
+        </div>
+            
+        {% endfor %}
+
+        <input type="submit" name="submit" value="Add Dog to my profile"/>
+    </form>
+    </div>
+{% endblock %}

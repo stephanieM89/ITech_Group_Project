@@ -1,0 +1,54 @@
+.dotm-entry {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.month {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #00000091;
+}
+
+.dotm-image {
+    border-radius: 500px;
+    width:200px;
+    height:200px;
+}
+
+.year {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #00000091;
+}
+
+.dotm-separator {
+    margin: 25px auto 20px auto;
+    width: 850px;
+    border: 0.5px solid #ffb8b8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+.fa-heart {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #ffb8b8;
+}
+
+.circles {
+    padding-left: 40px;
+    padding-right: 40px;
+    color: #00000091;
+}
+
+.vote-entry {
+    color: #00000091;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #ffb8b8;
+}

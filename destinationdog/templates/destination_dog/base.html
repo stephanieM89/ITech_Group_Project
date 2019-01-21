@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head lang="en">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="{% static 'js/destinationdog-ajax.js' %}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/base.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/article.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/hall_of_fame.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/dotm_article.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/article_list.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/events.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/forms.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/vote.css">
+        <link rel="stylesheet" type="text/css" href="/static/stylesheets/locate_service.css">
+
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+              integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+              crossorigin="anonymous">
+        <meta charset="UTF-8"/>
+        <title>DestinationDog - {% block title_block%}
+                {% endblock%}</title>
+        
+
+    {% block script_block %}
+    {% endblock %}
+</head>
+<body>
+
+
+    <div class="topnav">
+        <ul class="topnav">
+            <font size="5">DestinationDog   </font><img src="{% static "DestinationDog_Logo.png" %}" alt="DestinationDog" height="48" width="30"/>
+            {% if user.is_authenticated %}
+                <li class="right"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
+                <li class="right"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="right"><a href="{% url 'register' %}">Register</a></li>
+                <li class="right"><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+
+            <li><a href="{% url 'forum' %}">Forum</a></li>
+
+            <li class="dropdown"><a href="{% url 'events' %}" class="dropbtn">Events</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'add_events' %}">Add an Event</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li class="dropdown"><a href="{% url 'locateservice' %}" class="dropbtn">Locate Services</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'add_service' %}">Add a Service</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li class="dropdown"><a href="{% url 'dotm' %}" class="dropbtn">Dog of the Month</a>
+                <div class="dropdown-content">
+                    {% if user.is_authenticated %}
+                        <a href= {% url 'dotm_vote' %}>Vote</a>
+                        <a href="{% url 'dotm_enter' %}">Enter</a>
+                    {% endif %}
+                    <a href="{% url 'dotm_hall_of_fame' %}">Hall of Fame</a>
+                </div>
+            </li>
+
+            <li class="dropdown"><a href="{% url 'article_list' %}" class="dropbtn">Articles</a>
+                {% if user.is_authenticated %}
+                    <div class="dropdown-content">
+                        <a href="{% url 'add_article' %}">Add Article</a>
+                    </div>
+                {% endif %}
+            </li>
+
+            <li><a href="{% url 'home' %}">Home</a></li>
+            
+        </ul>
+    </div>
+{% block topnav_block %}
+{% endblock %}
+
+<div class="col-container">
+        <div class="column side"></div>
+        <div class="column middle">
+                <div class="article-container">
+                        <div class="article-header">
+                            {% block header_block %}
+                            {% endblock %}
+                            <i class="fas fa-paw"></i>
+                        </div>
+                </div>
+                    
+                <div class="article-container">
+                    {% block body_block %}
+                    {% endblock %}
+                </div>
+        </div>
+        <div class="column side"></div>
+    </div>
+
+
+
+
+{% block footer_block %}
+    <div class="footer">
+        <br><br>
+        <p>Copyright 2018</p>
+        <br><br>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+.event-list-item{
+    margin: 0 auto 0 auto;
+    width: 850px;
+    padding: 30px;
+    border: 2px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+    font-size: 16px;
+    color: #00000091;
+    background-color: whitesmoke;
+}
+
+.event-name{
+    font-size: 32px;
+    color: #ffb8b8;
+}
+
+.event-list-item:hover{
+    background-color: #ffb8b8;
+}
+
+a.event-list-link {
+    color: #00000091;
+}
+
+a.event-list-link:hover {
+    color: #00000091;
+    text-decoration: none;
+}

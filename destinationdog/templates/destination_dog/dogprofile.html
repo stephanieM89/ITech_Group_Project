@@ -1,0 +1,23 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">{{ dog.name }}</span>
+{% endblock %}
+
+
+{% block body_block %}
+    <div>
+        {% if dog %}
+            <h3>{{ dog.name }}</h3><br/>
+            <h2>Breed: {{ dog.breed }}</h2><br/>
+            <h2>Gender: {{ dog.gender }}</h2><br/>
+            <h2>About Me: {{ dog.about_me }}</h2><br/>
+
+            {% if picture %}
+                <img src="{{ MEDIA_URL }}{{ dog.picture }}"/><br>
+            {% endif %}
+        {% endif %}
+
+    </div>
+{% endblock %}

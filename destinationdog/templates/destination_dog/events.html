@@ -1,0 +1,26 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Events</span>
+{% endblock %}
+
+
+{% block body_block %}
+    <div>
+        {% if events %}
+                {% for event in events %}
+                    <a class="event-list-link" href="{% url 'show_event' event.slug %}">
+                    <div class="event-list-item">
+                        <div class="event-name">{{ event.name }}</div>
+                        <strong>{{ event.date }} | {{ event.time }}</strong><br/><br/>
+                        Event Location: {{ event.location }}<br/>
+                        Event Description: {{ event.description }}<br/>
+                    </div>
+                    </a>
+                {% endfor %}
+        {% else %}
+            <strong>There are no events present.</strong>
+        {% endif %}
+    </div>
+{% endblock %}

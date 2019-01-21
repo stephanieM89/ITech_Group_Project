@@ -1,0 +1,19 @@
+.owned_by {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #00000091;
+}
+
+.dog-name {
+    margin-top: 10px;
+    font-size: 36px;
+    color: #00000091;
+}
+
+a.owner-link {
+    color: #ffb8b8;
+}
+
+a.owner-link:hover {
+    color: #00000091;
+}

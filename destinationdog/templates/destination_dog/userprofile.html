@@ -1,0 +1,52 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+<div class = "header"><span class="title">{{ user.first_name }} {{ user.last_name }}</span></div>
+{% endblock %}
+
+{% block body_block %}
+    {% if user %}
+    <div>
+        {% if userprofile.picture %}<img class = "profile" src="{{ MEDIA_URL }}{{ userprofile.picture }}"
+                 width="400" height="400" alt="{{ user.username }}"/><br>
+        {% endif %}
+        <div>
+            {% if user.username == user.username %}
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Update Picture"/>
+                </form>
+            {% endif %}
+            <br/><br/>
+        </div>
+
+        <h4><u>{{ user.first_name }}'s Dogs</u></h4><br/>
+        {% if dog %}
+            <ul>
+
+                {% for d in dog %}
+                <div>
+                    <p><h5>Name: {{d.name }}</h5> Breed: {{d.breed}} | Gender: {{d.gender}} |
+                    <br/><img src="{{ MEDIA_URL }}{{ d.picture }}"width="500" height="500" alt="{{ user.username }}"/>
+                    <br/><br/>
+                    About me: {{d.about_me }}
+                    <br/>
+                    </p>
+                    <br/>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You don't have any dogs</p>
+        {% endif %}
+
+        <p><a href="{% url 'user_profile' user.username %}add_dog/" class="button">Add a Dog</a></p>
+        <p>To deactivate your profile, click here <a href="" class="button">Deactivate Profile</a>(Coming soon)<br/> </p>
+
+    </div>
+    {% else %}
+        No user found
+    {% endif %}
+{% endblock %}

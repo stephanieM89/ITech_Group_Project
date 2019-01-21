@@ -1,0 +1,43 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Hall of Fame</span>
+{% endblock %}
+
+{% block body_block %}
+    <span class="year">2018</span>
+    <div class="dotm-separator"></div>
+    <i class="fas fa-heart"></i>
+
+    <div class="row circles">
+        {% for dotm in thisyear %}
+            <div class="col-xs-4 dotm-entry">
+                <span class="month">{{ dotm.created_at|date:"F" }}</span>
+                {% if dotm.image %}
+                    <img class="dotm-image" src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
+                {% else %}
+                    No images
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <span class="year">2017 </span>
+    <div class="dotm-separator"></div>
+    <i class="fas fa-heart"></i>
+
+    <div class="row circles">
+        {% for dotm in lastyear %}
+            <div class="col-xs-4 dotm-entry">
+                <span class="month">{{ dotm.created_at|date:"F" }}</span>
+                {% if dotm.image %}
+                    <img class="dotm-image" src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
+                {% else %}
+                    No images
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'destination_dog/base.html' %}
+
+{% block header_block %}
+    <span class="title">{{ Members }}</span>
+{% endblock %}
+
+{% block body_block %}
+    {% if userprofile_list %}
+        {% for listuser in userprofile_list %}
+            <a href="{% url 'user_profile' listuser.user.username %}">{{ listuser.user.username }}</a>
+            <br/>
+        {% endfor %}
+    {% else %}
+        <p>There are no users for the site</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Articles</span>
+{% endblock %}
+
+{% block body_block %}
+    {% if article %}
+        {% for article in article %}
+            <a class="article-title-link" href="{% url 'show_article' article.slug %}">
+                <div class="article-list-item"> {{ article.title }}</div>
+            </a>
+        {% endfor %}
+
+    {% else %}
+        No articles found.
+    {% endif %}
+{% endblock %}

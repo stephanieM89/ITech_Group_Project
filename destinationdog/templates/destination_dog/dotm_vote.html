@@ -1,0 +1,32 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Vote</span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="row circles">
+
+        {% for dotm in dotm %}
+            <div class="col-xs-4 dotm-entry">
+
+                {% if dotm.image %}
+                    <img class="dotm-image" src="{{ MEDIA_URL }}{{ dotm.image }}"/><br>
+                {% else %}
+                    No images
+                {% endif %}
+                <div class="vote-entry">
+                    <div class="owned_by">{{ dotm.dog }}<br>
+                    Owned by
+                    <a class="owner-link" href=" {% url 'user_profile' dotm.owner.user.username %}"> {{ dotm.owner.user.first_name }} {{ dotm.owner.user.last_name }} </a>
+                </div>
+                    <button id="likes-{{ dotm.id }}" data-dotmid="{{ dotm.id }}" class="btn btn-primary btn-sm likes" type="button">
+                        Vote
+                    </button>
+                    <strong id="like_count-{{ dotm.id }}">{{ dotm.likes }}</strong>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

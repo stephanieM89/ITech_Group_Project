@@ -1,0 +1,29 @@
+{% extends 'destination_dog/base.html' %}
+{% load staticfiles %}
+
+{% block header_block %}
+    <span class="title">Add Service</span>
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        * denotes those fields which are required<br><br>
+        <form method="post" action="{% url 'add_service' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            <div class="col-25">
+                    {{ field.help_text }}
+                </div>
+                <div class="col-75">
+                    {{ field }}
+                </div>
+
+            {% endfor %}
+            <input type="submit" name="submit" value="Add Service"/>
+        </form>
+    </div>
+{% endblock %}

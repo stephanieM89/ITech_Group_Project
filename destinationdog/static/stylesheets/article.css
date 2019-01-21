@@ -1,0 +1,32 @@
+.article-image {
+    border-radius: 500px;
+    width: 350px;
+    height: 350px;
+}
+
+.article-separator {
+    margin: 40px auto 40px auto;
+    width: 100%;
+    border: 0.5px solid #ffb8b8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+a.author-link {
+    color: #ffb8b8;
+}
+
+a.author-link:hover {
+    color: #00000091;
+}
+
+.written_by {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #00000091;
+}
+
+.article-content {
+    margin-top: 40px;
+    font-size: 16px;
+    color: #00000091;
+}
